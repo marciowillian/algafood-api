@@ -1,0 +1,39 @@
+#######################################################
+#####   Rmover os "_" do inicio e fim do arquivo  #####
+#######################################################
+
+spring.datasource.url=jdbc:mysql://localhost:3306/db?createDatabaseIfNotExist=true&serverTimezone=UTC
+#spring.datasource.username=
+#spring.datasource.password=
+
+### Porta do tomcat ###
+server.port=8080
+
+#spring.jpa.generate-ddl=true
+#spring.jpa.hibernate.ddl-auto=update
+
+#As linhas abaixo são responsaveis por gerar um arquivo temporário com o ddl usado no schema do banco de dados
+spring.jpa.properties.javax.persistence.schema-generation.scripts.action=create
+spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=src/main/resources/ddl.sql
+
+#Linha responsável por executar as queries das migrations e do arquivo de massa de dados pra teste em desenvolvimento
+spring.flyway.locations=classpath:db/migration,classpath:db/testdata
+
+#Linha responsável por ativar exceptions geradas quando for informado uma propriedade inexistente nas requisições
+spring.jackson.deserialization.fail-on-unknown-properties=true
+spring.jackson.deserialization.fail-on-ignored-properties=true
+
+#Propriedas que permitem exceptions serem lançadas quando não existe um código mapeado
+spring.mvc.throw-exception-if-no-handler-found=true
+spring.web.resources.add-mappings=false
+
+
+#Configuração do Swagger
+spring.mvc.pathmatch.matching-strategy=ant-path-matcher
+
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL57Dialect
+
+spring.datasource.hikari.minimum-idle=3
+spring.datasource.hikari.maximum-pool-size=5
+spring.datasource.hikari.idle-timeout=10000
